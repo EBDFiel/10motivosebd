@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 Motivos Escola Dominical | Transforme sua Vida</title>
+  <style>
+    :root{
+      --bg1:#0C1023;
+      --bg2:#151B38;
+      --card: rgba(21,27,56,.95);
+      --stroke: rgba(124,92,255,.3);
+      --text:#F0F4FF;
+      --muted:#A0A8CC;
+      --accent:#FF6B35;  /* Laranja */
+      --accent2:#FFD166; /* Amarelo */
+      --accent3:#00B4D8; /* Azul */
+      --shadow: 0 25px 70px rgba(0,0,0,.6);
+      --r: 28px;
+      --glow: 0 0 60px rgba(255,107,53,.4);
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{
+      min-height:100vh;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,107,53,.15), transparent 60%),
+        radial-gradient(1000px 600px at 80% 90%, rgba(255,209,102,.12), transparent 60%),
+        radial-gradient(900px 500px at 50% 50%, rgba(0,180,216,.1), transparent 65%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+      position:relative;
+      touch-action: pan-y;
+    }
+
+    .container{
+      max-width:800px;
+      margin:0 auto;
+      padding:20px;
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .screen{
+      display:none;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:100%;
+      max-width:700px;
+      padding-bottom: 150px; /* Espaço para navegação */
+    }
+
+    .screen.active{
+      display:block;
+      opacity:1;
+      transform:translate(-50%, -50%) translateY(0);
+      position:relative;
+      top:auto;
+      left:auto;
+      transform:none;
+      animation:screenEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes screenEntrance{
+      0%{opacity:0; transform:translateY(40px) scale(0.95)}
+      100%{opacity:1; transform:translateY(0) scale(1)}
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .logo-container{
+      width:180px;
+      height:180px;
+      margin:0 auto 30px;
+      position:relative;
+      animation:logoFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat{
+      0%,100%{transform:translateY(0) rotate(0deg)}
+      25%{transform:translateY(-8px) rotate(1deg)}
+      50%{transform:translateY(-4px) rotate(-1deg)}
+      75%{transform:translateY(-12px) rotate(0.5deg)}
+    }
+
+    .logo-img{
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid var(--accent);
+      box-shadow:var(--glow);
+      filter:drop-shadow(0 20px 40px rgba(255,107,53,.3));
+    }
+
+    .logo-glow{
+      position:absolute;
+      inset:-20px;
+      background:radial-gradient(circle, rgba(255,107,53,.3), transparent 70%);
+      border-radius:50%;
+      z-index:-1;
+      animation:pulse 3s infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:0.5; transform:scale(1)}
+      50%{opacity:0.8; transform:scale(1.05)}
+    }
+
+    .title{
+      font-size:48px;
+      font-weight:900;
+      margin-bottom:20px;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      line-height:1.1;
+      text-align:center;
+    }
+
+    .phrase{
+      font-size:28px;
+      color:var(--text);
+      font-weight:600;
+      margin-bottom:40px;
+      text-align:center;
+      line-height:1.4;
+      padding:0 20px;
+      position:relative;
+      display:inline-block;
+    }
+
+    .phrase:before, .phrase:after{
+      content:"❝";
+      position:absolute;
+      font-size:60px;
+      color:var(--accent);
+      opacity:0.3;
+    }
+
+    .phrase:before{
+      left:-10px;
+      top:-30px;
+    }
+
+    .phrase:after{
+      content:"❞";
+      right:-10px;
+      bottom:-50px;
+    }
+
+    .reason-card{
+      background:var(--card);
+      border:2px solid var(--stroke);
+      border-radius:var(--r);
+      padding:50px;
+      position:relative;
+      overflow:hidden;
+      backdrop-filter:blur(20px);
+      box-shadow:var(--shadow);
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .reason-number{
+      position:absolute;
+      top:25px;
+      right:25px;
+      font-size:120px;
+      font-weight:900;
+      color:rgba(255,255,255,.04);
+      line-height:1;
+      font-family:'Arial Black', sans-serif;
+    }
+
+    .reason-icon{
+      width:100px;
+      height:100px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:48px;
+      margin:0 auto 30px;
+      box-shadow:var(--glow);
+      animation:iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat{
+      0%,100%{transform:translateY(0) rotate(0deg)}
+      33%{transform:translateY(-10px) rotate(5deg)}
+      66%{transform:translateY(-5px) rotate(-5deg)}
+    }
+
+    .reason-title{
+      font-size:36px;
+      font-weight:800;
+      margin-bottom:25px;
+      color:var(--text);
+      line-height:1.2;
+    }
+
+    .reason-desc{
+      font-size:20px;
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:30px;
+    }
+
+    .verse-box{
+      background:rgba(255,107,53,.08);
+      border-left:4px solid var(--accent);
+      border-radius:16px;
+      padding:20px;
+      margin-top:30px;
+      text-align:left;
+    }
+
+    .verse-text{
+      font-size:18px;
+      color:var(--text);
+      font-style:italic;
+      line-height:1.5;
+      margin-bottom:10px;
+    }
+
+    .verse-ref{
+      font-size:16px;
+      color:var(--accent2);
+      font-weight:600;
+    }
+
+    .progress-container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:60px;
+      padding:0 20px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 16, 35, 0.9);
+      backdrop-filter: blur(20px);
+      padding: 15px 20px;
+      border-top: 2px solid var(--stroke);
+      z-index: 1000;
+    }
+
+    .progress{
+      flex:1;
+      height:8px;
+      background:rgba(255,255,255,.1);
+      border-radius:4px;
+      overflow:hidden;
+      margin:0 30px;
+      position:relative;
+    }
+
+    .progress-bar{
+      height:100%;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      width:0%;
+      transition:width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position:relative;
+    }
+
+    .progress-bar:after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      animation:progressShine 2s infinite;
+    }
+
+    @keyframes progressShine{
+      0%{transform:translateX(-100%)}
+      100%{transform:translateX(100%)}
+    }
+
+    .btn{
+      padding:18px 40px;
+      border-radius:50px;
+      font-size:20px;
+      font-weight:700;
+      text-decoration:none;
+      transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display:inline-flex;
+      align-items:center;
+      gap:15px;
+      border:none;
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+      z-index:1;
+    }
+
+    .btn:before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      z-index:-1;
+      transition:opacity 0.3s;
+    }
+
+    .btn:after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(90deg, var(--accent2), var(--accent));
+      z-index:-2;
+      opacity:0;
+      transition:opacity 0.3s;
+    }
+
+    .btn:hover:before{
+      opacity:0;
+    }
+
+    .btn:hover:after{
+      opacity:1;
+    }
+
+    .btn:hover{
+      transform:translateY(-5px) scale(1.05);
+      box-shadow:0 20px 50px rgba(255,107,53,.4);
+    }
+
+    .btn:active{
+      transform:translateY(-2px) scale(1.02);
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      color:var(--bg1);
+      box-shadow:0 15px 40px rgba(255,107,53,.3);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.1);
+      color:var(--text);
+      border:2px solid var(--stroke);
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.15);
+    }
+
+    .btn-icon{
+      font-size:24px;
+    }
+
+    .btn-next .btn-icon{
+      animation:bounceRight 1.5s infinite;
+    }
+
+    @keyframes bounceRight{
+      0%,100%{transform:translateX(0)}
+      50%{transform:translateX(5px)}
+    }
+
+    .btn-prev .btn-icon{
+      animation:bounceLeft 1.5s infinite;
+    }
+
+    @keyframes bounceLeft{
+      0%,100%{transform:translateX(0)}
+      50%{transform:translateX(-5px)}
+    }
+
+    .step-indicator{
+      font-size:18px;
+      color:var(--muted);
+      font-weight:600;
+      min-width:100px;
+      text-align:center;
+    }
+
+    .navigation{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:50px;
+    }
+
+    /* Elementos decorativos */
+    .floating-element{
+      position:fixed;
+      border-radius:50%;
+      background:radial-gradient(circle, var(--accent3), transparent 70%);
+      filter:blur(50px);
+      z-index:-1;
+      animation:floatElement 25s infinite linear;
+      opacity:0.3;
+    }
+
+    @keyframes floatElement{
+      0%{transform:translate(0,0) rotate(0deg)}
+      25%{transform:translate(200px, 150px) rotate(90deg)}
+      50%{transform:translate(-100px, 300px) rotate(180deg)}
+      75%{transform:translate(300px, -100px) rotate(270deg)}
+      100%{transform:translate(0,0) rotate(360deg)}
+    }
+
+    .particles{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .particle{
+      position:absolute;
+      width:4px;
+      height:4px;
+      background:var(--accent);
+      border-radius:50%;
+      animation:particleFloat linear infinite;
+    }
+
+    @keyframes particleFloat{
+      to{transform:translateY(-100vh)}
+    }
+
+    /* Efeito de confetti */
+    .confetti{
+      position:fixed;
+      width:10px;
+      height:10px;
+      pointer-events:none;
+      z-index:1000;
+      animation:confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall{
+      0%{
+        transform:translateY(-100px) rotate(0deg);
+        opacity:1;
+      }
+      100%{
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
+      }
+    }
+
+    /* Responsivo */
+    @media (max-width:768px){
+      .container{padding:15px}
+      .title{font-size:36px}
+      .phrase{font-size:22px}
+      .reason-card{padding:30px}
+      .reason-title{font-size:28px}
+      .reason-desc{font-size:18px}
+      .reason-icon{
+        width:80px;
+        height:80px;
+        font-size:36px;
+      }
+      .btn{
+        padding:15px 25px;
+        font-size:16px;
+        gap:10px;
+      }
+      .logo-container{
+        width:140px;
+        height:140px;
+      }
+      .progress-container{
+        padding: 12px 15px;
+      }
+      .progress{
+        margin: 0 15px;
+      }
+      .step-indicator{
+        min-width: 80px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width:480px){
+      .title{font-size:28px}
+      .phrase{font-size:18px}
+      .reason-title{font-size:24px}
+      .navigation{
+        flex-direction:column;
+        gap:20px;
+      }
+      .btn{width:100%; justify-content:center}
+      .progress-container{
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .progress{
+        order: 3;
+        width: 100%;
+        margin: 10px 0 0 0;
+      }
+      .step-indicator{
+        order: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Partículas de fundo -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Elementos flutuantes decorativos -->
+  <div class="floating-element" style="width:400px;height:400px;top:-200px;left:-200px;"></div>
+  <div class="floating-element" style="width:300px;height:300px;bottom:-150px;right:-150px;animation-delay:10s;background:radial-gradient(circle, var(--accent), transparent 70%);"></div>
+
+  <div class="container">
+    <!-- Tela de Introdução -->
+    <div class="screen active" id="screen-0">
+      <div class="header">
+        <div class="logo-container">
+          <div class="logo-glow"></div>
+          <img src="https://i.imgur.com/vsNu5IC.png" alt="Escola Dominical" class="logo-img">
+        </div>
+        
+        <div class="phrase" id="motivation-start">
+          "ESCOLA DOMINICAL: Onde a Palavra transforma vidas e constrói discípulos comprometidos com Cristo!"
+        </div>
+        
+        <h1 class="title">10 Motivos Poderosos</h1>
+        <p style="font-size:22px; color:var(--muted); margin-bottom:40px; line-height:1.6">
+          Descubra porque a Escola Dominical é essencial para seu crescimento espiritual. 
+          Clique em "Começar" para explorar cada motivo.
+        </p>
+      </div>
+
+      <div class="navigation" style="justify-content:center">
+        <button class="btn btn-primary" id="start-btn">
+          <span class="btn-icon">🚀</span>
+          <span>Começar Jornada</span>
+        </button>
+      </div>
+
+      <div style="text-align:center; margin-top:60px; color:var(--muted); font-size:14px">
+        <p>Role para baixo ou use os botões de navegação</p>
+        <div style="font-size:30px; margin-top:10px; animation:bounce 2s infinite">⬇️</div>
+      </div>
+    </div>
+
+    <!-- Telas dos Motivos (1-10) -->
+    <div class="screen" id="screen-1">
+      <div class="reason-card">
+        <div class="reason-number">01</div>
+        <div class="reason-icon">📖</div>
+        <h2 class="reason-title">Alimento Espiritual Diário</h2>
+        <p class="reason-desc">
+          Assim como seu corpo precisa de comida, sua alma precisa se alimentar da Palavra. 
+          A Escola Dominical oferece nutrição espiritual consistente que fortalece sua fé e sustenta 
+          seu relacionamento com Deus todos os dias da semana.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Nem só de pão viverá o homem, mas de toda palavra que procede da boca de Deus."</p>
+          <p class="verse-ref">Mateus 4:4</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-2">
+      <div class="reason-card">
+        <div class="reason-number">02</div>
+        <div class="reason-icon">🛡️</div>
+        <h2 class="reason-title">Proteção Contra Enganos</h2>
+        <p class="reason-desc">
+          Em um mundo cheio de falsos ensinos, a Escola Dominical te equipa com discernimento espiritual. 
+          Você aprende a examinar tudo à luz das Escrituras e se firmar na verdade que liberta.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Examinai tudo. Retende o bem."</p>
+          <p class="verse-ref">1 Tessalonicenses 5:21</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-3">
+      <div class="reason-card">
+        <div class="reason-number">03</div>
+        <div class="reason-icon">🤝</div>
+        <h2 class="reason-title">Comunhão que Fortalece</h2>
+        <p class="reason-desc">
+          Na Escola Dominical você não está sozinho. É uma família espiritual onde encontramos irmãos 
+          para orar juntos, compartilhar lutas e celebrar vitórias. Crescemos melhor quando 
+          crescemos em comunidade.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Não deixemos de congregar-nos, como é costume de alguns."</p>
+          <p class="verse-ref">Hebreus 10:25</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-4">
+      <div class="reason-card">
+        <div class="reason-number">04</div>
+        <div class="reason-icon">🎯</div>
+        <h2 class="reason-title">Direção para Decisões</h2>
+        <p class="reason-desc">
+          Aprenda princípios bíblicos para tomar decisões sábias em todas as áreas da vida. 
+          A Escola Dominical ilumina seu caminho com a Palavra de Deus, dando clareza para escolhas 
+          importantes.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Lâmpada para os meus pés é a tua palavra e luz, para o meu caminho."</p>
+          <p class="verse-ref">Salmos 119:105</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-5">
+      <div class="reason-card">
+        <div class="reason-number">05</div>
+        <div class="reason-icon">💪</div>
+        <h2 class="reason-title">Fortalecimento na Fé</h2>
+        <p class="reason-desc">
+          A vida cristã tem desafios reais. A Escola Dominical te prepara para enfrentá-los com fé, 
+          fornecendo as ferramentas espirituais necessárias para vencer tentações e permanecer 
+          firme nas promessas de Deus.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Revesti-vos de toda a armadura de Deus, para que possais estar firmes."</p>
+          <p class="verse-ref">Efésios 6:11</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-6">
+      <div class="reason-card">
+        <div class="reason-number">06</div>
+        <div class="reason-icon">🌟</div>
+        <h2 class="reason-title">Descoberta de Dons</h2>
+        <p class="reason-desc">
+          Na Escola Dominical você descobre e desenvolve seus dons espirituais. É um ambiente seguro 
+          para experimentar ministérios e encontrar onde Deus quer usá-lo no Corpo de Cristo.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Cada um exerça o dom que recebeu para servir aos outros."</p>
+          <p class="verse-ref">1 Pedro 4:10</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-7">
+      <div class="reason-card">
+        <div class="reason-number">07</div>
+        <div class="reason-icon">🧭</div>
+        <h2 class="reason-title">Propósito e Chamado</h2>
+        <p class="reason-desc">
+          Entenda o plano de Deus para sua vida. A Escola Dominical revela seu propósito eterno e te 
+          ajuda a viver com significado, indo além da rotina para uma vida com impacto eterno.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Porque sou eu que conheço os planos que tenho para vocês."</p>
+          <p class="verse-ref">Jeremias 29:11</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-8">
+      <div class="reason-card">
+        <div class="reason-number">08</div>
+        <div class="reason-icon">🔥</div>
+        <h2 class="reason-title">Transformação de Vida</h2>
+        <p class="reason-desc">
+          Não apenas conhecimento teórico, mas poder transformador. A Escola Dominical te ensina a 
+          aplicar a Palavra em todas as áreas: família, trabalho, relacionamentos e caráter.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"E não vos amoldeis às estruturas deste mundo, mas transformai-vos."</p>
+          <p class="verse-ref">Romanos 12:2</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-9">
+      <div class="reason-card">
+        <div class="reason-number">09</div>
+        <div class="reason-icon">🧩</div>
+        <h2 class="reason-title">Respostas para Dúvidas</h2>
+        <p class="reason-desc">
+          Um espaço seguro para perguntar e entender. Na Escola Dominical você tira dúvidas, debate 
+          questões difíceis e encontra respostas bíblicas para os desafios da vida moderna.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Se algum de vocês tem falta de sabedoria, peça-a a Deus."</p>
+          <p class="verse-ref">Tiago 1:5</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-10">
+      <div class="reason-card">
+        <div class="reason-number">10</div>
+        <div class="reason-icon">🚀</div>
+        <h2 class="reason-title">Legado Eterno</h2>
+        <p class="reason-desc">
+          Ao participar da Escola Dominical, você está construindo um legado de fé que atravessa 
+          gerações. Seu crescimento espiritual influencia sua família e comunidade para a 
+          glória de Deus.
+        </p>
+        <div class="verse-box">
+          <p class="verse-text">"Ensina a criança no caminho em que deve andar."</p>
+          <p class="verse-ref">Provérbios 22:6</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tela Final -->
+    <div class="screen" id="screen-11">
+      <div class="header">
+        <div class="logo-container">
+          <div class="logo-glow"></div>
+          <img src="https://i.imgur.com/vsNu5IC.png" alt="Escola Dominical" class="logo-img">
+        </div>
+        
+        <div class="phrase" id="motivation-end">
+          "Na Escola Dominical, cada domingo é uma oportunidade para crescer, servir e impactar vidas para a eternidade!"
+        </div>
+        
+        <h1 class="title">Parabéns pela Jornada! 🎉</h1>
+        <p style="font-size:22px; color:var(--muted); margin-bottom:40px; line-height:1.6">
+          Você descobriu os 10 motivos poderosos para fazer da Escola Dominical parte da sua vida. 
+          Agora é hora de colocar em prática!
+        </p>
+
+        <div style="background:rgba(255,107,53,.1); border-radius:20px; padding:30px; margin:40px 0">
+          <h3 style="font-size:24px; margin-bottom:20px; color:var(--accent2)">🏆 Seu Compromisso</h3>
+          <p style="font-size:18px; color:var(--muted); line-height:1.6">
+            Ao participar da Escola Dominical, você está investindo no seu crescimento espiritual, 
+            fortalecendo sua fé e preparando-se para cumprir o propósito de Deus para sua vida.
+          </p>
+        </div>
+      </div>
+
+      <div class="navigation" style="justify-content:center; gap:20px">
+        <button class="btn btn-primary" id="participate-btn">
+          <span class="btn-icon">✅</span>
+          <span>Quero Participar!</span>
+        </button>
+        <button class="btn btn-secondary" id="restart-btn">
+          <span class="btn-icon">🔄</span>
+          <span>Revisar Motivos</span>
+        </button>
+      </div>
+
+      <div style="text-align:center; margin-top:60px; color:var(--muted); font-size:16px">
+        <p><strong>Próxima Escola Dominical:</strong> ⛪Domingo📖</p>
+        <p style="margin-top:10px">Traga sua Bíblia, seu caderno e seu coração aberto!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação fixa na parte inferior -->
+  <div class="progress-container" id="navigation" style="display:none">
+    <button class="btn btn-secondary btn-prev" id="prev-btn">
+      <span class="btn-icon">⬅️</span>
+      <span>Anterior</span>
+    </button>
+    
+    <div class="progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <div class="step-indicator">
+      <span id="current-step">1</span> / <span id="total-steps">10</span>
+    </div>
+    
+    <button class="btn btn-primary btn-next" id="next-btn">
+      <span>Próximo</span>
+      <span class="btn-icon">➡️</span>
+    </button>
+  </div>
+
+  <script>
+    // Configuração
+    const CONFIG = {
+      totalScreens: 12, // 0-11
+      currentScreen: 0,
+      isScrolling: false,
+      scrollCooldown: 800 // Tempo de espera entre scrolls em ms
+    };
+
+    // Elementos DOM
+    const screens = document.querySelectorAll('.screen');
+    const progressBar = document.getElementById('progress-bar');
+    const currentStep = document.getElementById('current-step');
+    const totalSteps = document.getElementById('total-steps');
+    const navigation = document.getElementById('navigation');
+    const particlesContainer = document.getElementById('particles');
+
+    // Inicializar partículas
+    function createParticles() {
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.opacity = Math.random() * 0.5 + 0.2;
+        particle.style.background = Math.random() > 0.5 ? '#FF6B35' : '#FFD166';
+        particle.style.width = Math.random() * 4 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Criar confetti
+    function createConfetti() {
+      const colors = ['#FF6B35', '#FFD166', '#00B4D8', '#FFFFFF'];
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confetti.style.animationDelay = Math.random() * 1 + 's';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        document.body.appendChild(confetti);
+        
+        // Remover após animação
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+    }
+
+    // Atualizar tela atual
+    function updateScreen(screenIndex) {
+      // Validar índice
+      if (screenIndex < 0) screenIndex = 0;
+      if (screenIndex >= CONFIG.totalScreens) screenIndex = CONFIG.totalScreens - 1;
+      
+      CONFIG.currentScreen = screenIndex;
+      
+      // Atualizar visibilidade das telas
+      screens.forEach((screen, index) => {
+        screen.classList.remove('active');
+        if (index === screenIndex) {
+          setTimeout(() => {
+            screen.classList.add('active');
+          }, 50);
+        }
+      });
+      
+      // Atualizar navegação
+      updateNavigation();
+      
+      // Rolar para o topo suavemente
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Efeito de confetti ao completar
+      if (screenIndex === CONFIG.totalScreens - 1) {
+        setTimeout(() => {
+          createConfetti();
+        }, 500);
+      }
+    }
+
+    // Atualizar navegação
+    function updateNavigation() {
+      const isFirstScreen = CONFIG.currentScreen === 0;
+      const isLastScreen = CONFIG.currentScreen === CONFIG.totalScreens - 1;
+      
+      // Mostrar/ocultar navegação
+      if (isFirstScreen || isLastScreen) {
+        navigation.style.display = 'none';
+      } else {
+        navigation.style.display = 'flex';
+      }
+      
+      // Atualizar progresso
+      const progressPercentage = (CONFIG.currentScreen / (CONFIG.totalScreens - 1)) * 100;
+      progressBar.style.width = progressPercentage + '%';
+      
+      // Atualizar indicador de passo
+      const currentStepNumber = Math.max(0, CONFIG.currentScreen - 1);
+      currentStep.textContent = currentStepNumber + 1;
+      totalSteps.textContent = '10';
+    }
+
+    // Função para navegar com cooldown
+    function navigateWithCooldown(direction) {
+      if (CONFIG.isScrolling) return;
+      
+      CONFIG.isScrolling = true;
+      
+      if (direction === 'next') {
+        updateScreen(CONFIG.currentScreen + 1);
+      } else if (direction === 'prev') {
+        updateScreen(CONFIG.currentScreen - 1);
+      }
+      
+      // Ativar cooldown
+      setTimeout(() => {
+        CONFIG.isScrolling = false;
+      }, CONFIG.scrollCooldown);
+    }
+
+    // Event Listeners para botões
+    document.getElementById('start-btn').addEventListener('click', () => {
+      updateScreen(1);
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      navigateWithCooldown('next');
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      navigateWithCooldown('prev');
+    });
+
+    document.getElementById('restart-btn').addEventListener('click', () => {
+      updateScreen(1);
+    });
+
+    document.getElementById('participate-btn').addEventListener('click', () => {
+      alert('Maravilha! Estamos ansiosos para te receber na próxima Escola Dominical!\n\n📅 Domingo, No horário definido pela sua Igreja Local\n📍 Salão Principal\n✅ Traga sua Bíblia e caderno');
+    });
+
+    // Navegação por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        navigateWithCooldown('next');
+      } else if (e.key === 'ArrowLeft') {
+        navigateWithCooldown('prev');
+      } else if (e.key === 'Home') {
+        updateScreen(0);
+      } else if (e.key === 'End') {
+        updateScreen(CONFIG.totalScreens - 1);
+      }
+    });
+
+    // Navegação por rolagem (melhorada para mobile)
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    const SWIPE_THRESHOLD = 50; // pixels mínimos para considerar swipe
+    const SWIPE_TIME_THRESHOLD = 500; // ms máximos para considerar swipe
+
+    // Para mouse/trackpad
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      // Verificar cooldown
+      if (CONFIG.isScrolling) return;
+      
+      if (e.deltaY > 0) {
+        // Scroll para baixo = próximo
+        navigateWithCooldown('next');
+      } else if (e.deltaY < 0) {
+        // Scroll para cima = anterior
+        navigateWithCooldown('prev');
+      }
+    }, { passive: false });
+
+    // Para toque em dispositivos móveis
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+    });
+
+    window.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndTime = Date.now();
+      const diffY = touchStartY - touchEndY;
+      const timeDiff = touchEndTime - touchStartTime;
+      
+      // Verificar se é um swipe rápido o suficiente
+      if (timeDiff > SWIPE_TIME_THRESHOLD) return;
+      
+      if (Math.abs(diffY) > SWIPE_THRESHOLD) {
+        if (diffY > 0) {
+          // Swipe para cima = próximo
+          navigateWithCooldown('next');
+        } else {
+          // Swipe para baixo = anterior
+          navigateWithCooldown('prev');
+        }
+      }
+    });
+
+    // Prevenir comportamento padrão de rolagem
+    document.addEventListener('touchmove', (e) => {
+      // Permitir rolagem dentro dos elementos, mas não navegação por swipe acidental
+      const isContentScrollable = e.target.closest('.reason-card') || 
+                                 e.target.closest('.verse-box');
+      
+      if (!isContentScrollable && Math.abs(e.touches[0].clientY - touchStartY) > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // Inicializar
+    function init() {
+      createParticles();
+      updateNavigation();
+      
+      // Efeito de digitação nas frases motivadoras
+      const phrases = document.querySelectorAll('.phrase');
+      phrases.forEach(phrase => {
+        const text = phrase.textContent;
+        phrase.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+          if (i < text.length) {
+            phrase.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 30);
+          }
+        }
+        
+        // Iniciar quando a tela ficar visível
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            setTimeout(typeWriter, 500);
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(phrase);
+      });
+    }
+
+    // Iniciar quando a página carregar
+    window.addEventListener('load', init);
+    
+    // Prevenir zoom em double tap em mobile
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+</body>
+</html>
