@@ -3,7 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10 Motivos Escola Dominical | Transforme sua Vida</title>
+  
+  <!-- TÍTULO E DESCRIÇÃO -->
+  <title>10 Motivos Escola Dominical | Quiz Interativo</title>
+  <meta name="description" content="Descubra 10 motivos poderosos para participar da Escola Dominical! Quiz animado e interativo. Acesse agora!">
+  
+  <!-- META TAGS PARA REDES SOCIAIS -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ebdfiel.github.io/10motivosebd/">
+  <meta property="og:title" content="🎯 10 MOTIVOS - Escola Dominical">
+  <meta property="og:description" content="Quiz Interativo • Descubra por que a Escola Dominical transforma vidas! Clique e explore cada motivo.">
+  <meta property="og:image" content="https://i.imgur.com/JVkL7Wn.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  
+  <!-- TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ebdfiel.github.io/10motivosebd/">
+  <meta name="twitter:title" content="🎯 10 MOTIVOS - Escola Dominical">
+  <meta name="twitter:description" content="Quiz Interativo • Descubra por que a Escola Dominical transforma vidas!">
+  <meta name="twitter:image" content="https://i.imgur.com/JVkL7Wn.png">
+  
+  <!-- WHATSAPP -->
+  <meta property="og:site_name" content="Escola Dominical FIEL">
+  
+  <!-- ESTILOS -->
   <style>
     :root{
       --bg1:#0C1023;
@@ -12,9 +37,9 @@
       --stroke: rgba(124,92,255,.3);
       --text:#F0F4FF;
       --muted:#A0A8CC;
-      --accent:#FF6B35;  /* Laranja */
-      --accent2:#FFD166; /* Amarelo */
-      --accent3:#00B4D8; /* Azul */
+      --accent:#FF6B35;
+      --accent2:#FFD166;
+      --accent3:#00B4D8;
       --shadow: 0 25px 70px rgba(0,0,0,.6);
       --r: 28px;
       --glow: 0 0 60px rgba(255,107,53,.4);
@@ -57,7 +82,7 @@
       transform:translate(-50%, -50%);
       width:100%;
       max-width:700px;
-      padding-bottom: 150px; /* Espaço para navegação */
+      padding-bottom: 150px;
     }
 
     .screen.active{
@@ -773,7 +798,7 @@
       </div>
 
       <div style="text-align:center; margin-top:60px; color:var(--muted); font-size:16px">
-        <p><strong>Próxima Escola Dominical:</strong> ⛪Domingo📖</p>
+        <p><strong>Próxima Escola Dominical:</strong> Domingo, 09:00</p>
         <p style="margin-top:10px">Traga sua Bíblia, seu caderno e seu coração aberto!</p>
       </div>
     </div>
@@ -806,7 +831,7 @@
       totalScreens: 12, // 0-11
       currentScreen: 0,
       isScrolling: false,
-      scrollCooldown: 800 // Tempo de espera entre scrolls em ms
+      scrollCooldown: 800
     };
 
     // Elementos DOM
@@ -848,7 +873,6 @@
         confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
         document.body.appendChild(confetti);
         
-        // Remover após animação
         setTimeout(() => {
           confetti.remove();
         }, 3000);
@@ -857,13 +881,11 @@
 
     // Atualizar tela atual
     function updateScreen(screenIndex) {
-      // Validar índice
       if (screenIndex < 0) screenIndex = 0;
       if (screenIndex >= CONFIG.totalScreens) screenIndex = CONFIG.totalScreens - 1;
       
       CONFIG.currentScreen = screenIndex;
       
-      // Atualizar visibilidade das telas
       screens.forEach((screen, index) => {
         screen.classList.remove('active');
         if (index === screenIndex) {
@@ -873,16 +895,13 @@
         }
       });
       
-      // Atualizar navegação
       updateNavigation();
       
-      // Rolar para o topo suavemente
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
       
-      // Efeito de confetti ao completar
       if (screenIndex === CONFIG.totalScreens - 1) {
         setTimeout(() => {
           createConfetti();
@@ -895,18 +914,15 @@
       const isFirstScreen = CONFIG.currentScreen === 0;
       const isLastScreen = CONFIG.currentScreen === CONFIG.totalScreens - 1;
       
-      // Mostrar/ocultar navegação
       if (isFirstScreen || isLastScreen) {
         navigation.style.display = 'none';
       } else {
         navigation.style.display = 'flex';
       }
       
-      // Atualizar progresso
       const progressPercentage = (CONFIG.currentScreen / (CONFIG.totalScreens - 1)) * 100;
       progressBar.style.width = progressPercentage + '%';
       
-      // Atualizar indicador de passo
       const currentStepNumber = Math.max(0, CONFIG.currentScreen - 1);
       currentStep.textContent = currentStepNumber + 1;
       totalSteps.textContent = '10';
@@ -924,7 +940,6 @@
         updateScreen(CONFIG.currentScreen - 1);
       }
       
-      // Ativar cooldown
       setTimeout(() => {
         CONFIG.isScrolling = false;
       }, CONFIG.scrollCooldown);
@@ -948,7 +963,7 @@
     });
 
     document.getElementById('participate-btn').addEventListener('click', () => {
-      alert('Maravilha! Estamos ansiosos para te receber na próxima Escola Dominical!\n\n📅 Domingo, No horário definido pela sua Igreja Local\n📍 Salão Principal\n✅ Traga sua Bíblia e caderno');
+      alert('Maravilha! Estamos ansiosos para te receber na próxima Escola Dominical!\n\n📅 Domingo, 09:00\n📍 Salão Principal\n✅ Traga sua Bíblia e caderno');
     });
 
     // Navegação por teclado
@@ -964,24 +979,20 @@
       }
     });
 
-    // Navegação por rolagem (melhorada para mobile)
+    // Navegação por rolagem
     let touchStartY = 0;
     let touchStartTime = 0;
-    const SWIPE_THRESHOLD = 50; // pixels mínimos para considerar swipe
-    const SWIPE_TIME_THRESHOLD = 500; // ms máximos para considerar swipe
+    const SWIPE_THRESHOLD = 50;
+    const SWIPE_TIME_THRESHOLD = 500;
 
-    // Para mouse/trackpad
     window.addEventListener('wheel', (e) => {
       e.preventDefault();
       
-      // Verificar cooldown
       if (CONFIG.isScrolling) return;
       
       if (e.deltaY > 0) {
-        // Scroll para baixo = próximo
         navigateWithCooldown('next');
       } else if (e.deltaY < 0) {
-        // Scroll para cima = anterior
         navigateWithCooldown('prev');
       }
     }, { passive: false });
@@ -998,15 +1009,12 @@
       const diffY = touchStartY - touchEndY;
       const timeDiff = touchEndTime - touchStartTime;
       
-      // Verificar se é um swipe rápido o suficiente
       if (timeDiff > SWIPE_TIME_THRESHOLD) return;
       
       if (Math.abs(diffY) > SWIPE_THRESHOLD) {
         if (diffY > 0) {
-          // Swipe para cima = próximo
           navigateWithCooldown('next');
         } else {
-          // Swipe para baixo = anterior
           navigateWithCooldown('prev');
         }
       }
@@ -1014,7 +1022,6 @@
 
     // Prevenir comportamento padrão de rolagem
     document.addEventListener('touchmove', (e) => {
-      // Permitir rolagem dentro dos elementos, mas não navegação por swipe acidental
       const isContentScrollable = e.target.closest('.reason-card') || 
                                  e.target.closest('.verse-box');
       
@@ -1043,7 +1050,6 @@
           }
         }
         
-        // Iniciar quando a tela ficar visível
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
             setTimeout(typeWriter, 500);
@@ -1067,6 +1073,19 @@
       }
       lastTouchEnd = now;
     }, false);
+    
+    // Compartilhamento social
+    window.addEventListener('DOMContentLoaded', function() {
+      // Verifica se a página foi carregada via compartilhamento
+      if (document.referrer.includes('facebook.com') || 
+          document.referrer.includes('twitter.com') ||
+          document.referrer.includes('whatsapp.com')) {
+        // Rolagem suave para o início
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+      }
+    });
   </script>
 </body>
 </html>
